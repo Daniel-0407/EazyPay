@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <preConditions onFail="WARN">
+        <not>
+            <tableExists tableName="Account" />
+        </not>
+    </preConditions>
+
+    <changeSet id="20240115_01" author="Daniel_TR">
+        <createTable tableName="Account">
+            <column name="id" type="varchar(255)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="number" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="owner" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="type" type="varchar(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="created_at" type="date">
+                <constraints nullable="false" />
+            </column>
+            <column name="updated_at" type="date">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+        <createIndex tableName="Account" indexName="Account_idx">
+            <column name="id" />
+            <column name="number"/>
+            <column name="owner"/>
+            <column name="type"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>
